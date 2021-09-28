@@ -89,25 +89,54 @@ const domainGenerator = () => {
     "Zorilla",
     "Kinkajou",
     "Caecilian",
-    "Paca"
+    "Paca",
+    "primates",
+    "silversides",
+    "oscines",
+    "testudines",
+    "cyclopes",
+    "silverside",
+    "tardigrade",
+    "trematode",
+    "hornet",
+    "cyborg"
   ];
   let extensions = [
-    ".com",
-    ".es",
-    ".fr",
-    ".de",
-    ".org",
-    ".net",
-    ".int",
-    ".edu",
-    ".gov",
-    ".mil"
+    "com",
+    "es",
+    "fr",
+    "de",
+    "org",
+    "net",
+    "int",
+    "edu",
+    "gov",
+    "mil"
   ];
-  return (
-    randomeElement(exotic_colours).toLowerCase() +
-    randomeElement(exotic_animal).toLowerCase() +
-    randomeElement(extensions)
-  );
+  let rand_animal = randomeElement(exotic_animal).toLowerCase();
+  let extension_type1 = rand_animal.slice(-3);
+  let extension_type2 = rand_animal.slice(-2);
+
+  if (extensions.includes(extension_type1)) {
+    rand_animal =
+      rand_animal.substring(0, rand_animal.length - extension_type1.length) +
+      "." +
+      extension_type1;
+    return randomeElement(exotic_colours).toLowerCase() + rand_animal;
+  } else if (extensions.includes(extension_type2)) {
+    rand_animal =
+      rand_animal.substring(0, rand_animal.length - extension_type2.length) +
+      "." +
+      extension_type2;
+    return randomeElement(exotic_colours).toLowerCase() + rand_animal;
+  } else {
+    return (
+      randomeElement(exotic_colours).toLowerCase() +
+      rand_animal +
+      "." +
+      randomeElement(extensions)
+    );
+  }
 };
 
 function randomeElement(array) {
